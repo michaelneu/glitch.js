@@ -1,0 +1,86 @@
+@color-navbar: #009688; // see https://www.google.de/design/spec/style/color.html#color-color-palette
+@placeholder-color: #fff;
+@responsive-width-mobile: 730px;
+@animation-duration: 0.1s;
+@font-size: 40px / 3;
+
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+* {
+    font-family: Roboto, sans-serif;
+    outline: none;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.titlebar {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    height: 42px;
+
+    font-size: @font-size;
+    background-color: @color-navbar;
+    color: #fff;
+
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.26);
+
+    .container {
+        padding: 7.5px;
+
+        a {
+            color: #fff;
+            display: inline-block;
+            margin-right: 20px;
+            padding-top: 3px;
+
+            font-size: 18px;
+        }
+    }
+}
+.titlebar ~ .container {
+    margin-top: 60px;
+}
+
+#shadow {
+    display: none;
+}
+
+#playground {
+    &.no.side-by-side {
+        text-align: center;
+        
+        & :first-child {
+            display: none;
+        }
+
+        img,
+        video {
+            max-width: 100%;
+            float: none;
+        }
+    }
+
+    img,
+    video {
+        max-width: 49%;
+        max-height: 80%;
+    }
+
+    img + img,
+    video + video {
+        float: right;
+    }
+}
+
+@import "mixins/grid.less";
+@import "mixins/input.less";
+@import "mixins/responsive-helper.less";
+@import "mixins/helper.less";

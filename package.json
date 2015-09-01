@@ -1,0 +1,10 @@
+{
+    "devDependencies": {
+        "gulp": "*",
+        "gulp-clean": "*",
+        "gulp-concat": "*",
+        "gulp-rename": "*",
+        "gulp-uglify": "*",
+        "gulp-less": "*"
+    }
+}

@@ -1,0 +1,56 @@
+input {
+    border: none;
+    border-bottom: 1px solid transparent;
+
+    font-size: @font-size;
+    background: transparent;
+    color: #fff;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+label {
+    margin-right: 20px;
+}
+
+
+input[type="text"] {
+    width: 100px;
+    padding: 5px 10px;
+    margin-right: 10px;
+
+    opacity: 0.7;
+
+    .animate(~"opacity, border-color");
+
+    &:focus {
+        border-bottom: 1px solid #4DB6AC;
+        opacity: 1;
+    }
+}
+
+input[type="file"] {
+    color: #fff;
+
+    .animate(color);
+
+    &:invalid {
+        color: #4DB6AC;
+
+        &:focus {
+            color: #fff;
+        }
+    }
+}
+
+::-webkit-input-placeholder {
+    color: @placeholder-color;
+}
+::-moz-input-placeholder {
+    color: @placeholder-color;
+}
+:-ms-input-placeholder {
+    color: @placeholder-color;
+}

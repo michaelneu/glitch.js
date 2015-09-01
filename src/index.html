@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+    <head>
+        <title>glitch.js</title>
+        <link rel="stylesheet" href="assets/css/glitch.css">
+    </head>
+
+    <body>
+        <div class="titlebar">
+            <div class="container">
+                <a href="//github.com/minedev/glitch.js">glitch.js</a>
+
+                <div class="right">
+                    <a href="https://en.wikipedia.org/wiki/Glitch_art">?</a>
+                </div>
+
+                <div class="right hidden on mobile">
+                    <input id="input-search"  type="text" placeholder="Search" autofocus>
+                    <input id="input-replace" type="text" placeholder="Replace">
+
+                    <input id="input-side-by-side" type="checkbox">
+                    <label for="input-side-by-side">Side-By-Side</label>
+
+                    <input id="input-file" type="file" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="container hidden on mobile">
+            <canvas id="shadow"></canvas>
+            <div id="playground" class="no side-by-side"></div>
+        </div>
+
+        <div class="container visible on mobile">
+            Sorry, glitch.js is only available on the desktop.
+        </div>
+
+        <noscript class="container">
+            glitch.js requires JavaScript. Who might have thought that.
+        </noscript>
+
+        <script src="assets/js/glitch.min.js"></script>
+    </body>
+</html>

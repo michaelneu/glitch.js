@@ -1,0 +1,15 @@
+.visible.on.mobile {
+    display: none;
+}
+
+@media (max-width: @responsive-width-mobile) {
+    .on.mobile {
+        &.visible {
+            display: inherit;
+        }
+
+        &.hidden {
+            display: none;
+        }
+    }
+}

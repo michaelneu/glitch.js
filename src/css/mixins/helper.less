@@ -1,0 +1,8 @@
+
+.animate(@property; @duration) {
+    transition-property: @property;
+    transition-duration: @duration;
+}
+.animate(@property) {
+    .animate(@property; @animation-duration);
+}
