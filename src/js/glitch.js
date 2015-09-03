@@ -4,6 +4,7 @@
         inputSearch  = document.getElementById("input-search"),
         inputReplace = document.getElementById("input-replace"),
         inputShowImg = document.getElementById("input-side-by-side"),
+        inputAll     = document.getElementById("input-all"),
         source, dest;
 
     fileChooser("#input-file", function (data) {
@@ -15,6 +16,8 @@
         clearChildren(playground);
 
         if (media === "image") {
+            inputAll.removeAttribute("disabled");
+
             source = document.createElement("img");
             dest   = document.createElement("img");
 
@@ -23,10 +26,13 @@
                 source.src = data;
             } else {
                 convertToJpeg(data, canvas, function (data) {
-                    source.src    = data;
+                    source.src = data;
                 });
             }
         } else if (media === "video") {
+            inputAll.setAttribute("disabled", "");
+            inputAll.checked = false;
+
             source = document.createElement("video");
             dest   = document.createElement("video");
 
@@ -34,7 +40,7 @@
             source.onloadstart = glitch;
             dest.onloadstart   = function () {
                 this.currentTime = source.currentTime;
-            }
+            };
 
             source.type = dest.type = mime;
             ["autoplay", "loop", "muted"].forEach(function (element) {
@@ -66,21 +72,30 @@
     function glitch() {
         setTimeout(function () {
             if (source) {
-                var data = byteGlitch(source.src, inputSearch.value, inputReplace.value);
-                dest.src = data;
+                var search  = inputSearch.value,
+                    replace = inputReplace.value;
 
-                if (source.currentTime !== undefined) {
-                    dest.currentTime = source.currentTime;
+                if (search && search.length > 0 && replace && replace.length > 0) {
+                    var data = byteGlitch(source.src, search, replace, inputAll.checked);
+                    dest.src = data;
 
-                    if (source.paused) {
-                        dest.pause();
+                    if (source.currentTime !== undefined) {
+                        dest.currentTime = source.currentTime;
+
+                        if (source.paused) {
+                            dest.pause();
+                        }
                     }
+                } else {
+                    dest.src = source.src;
                 }
             }
         }, 10);
     }
 
-    inputSearch.onkeydown = inputReplace.onkeydown = glitch;
+    inputSearch.onkeydown  = glitch;
+    inputReplace.onkeydown = glitch;
+    inputAll.onchange      = glitch;
 
     inputShowImg.onchange = function () {
         if (this.checked) {

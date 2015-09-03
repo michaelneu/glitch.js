@@ -13,6 +13,13 @@ input {
 
 label {
     margin-right: 20px;
+    cursor: pointer;
+    opacity: @navbar-transparency;
+
+    .animate(opacity);
+}
+input[type="checkbox"]:focus + label {
+    opacity: 1;
 }
 
 
@@ -21,7 +28,7 @@ input[type="text"] {
     padding: 5px 10px;
     margin-right: 10px;
 
-    opacity: 0.7;
+    opacity: @navbar-transparency;
 
     .animate(~"opacity, border-color");
 
@@ -37,12 +44,17 @@ input[type="file"] {
     .animate(color);
 
     &:invalid {
-        color: #4DB6AC;
+        color: rgba(255, 255, 255, @navbar-transparency);;
 
         &:focus {
             color: #fff;
         }
     }
+}
+
+input[type="checkbox"] {
+    position: relative;
+    top: 2px;
 }
 
 ::-webkit-input-placeholder {

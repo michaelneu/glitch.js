@@ -1,12 +1,17 @@
-function byteGlitch(data, search, replace) {
-    var head = data.indexOf(","),
-        blob = data.substring(head + 1);
+function byteGlitch(data, search, replace, replaceAll) {
+    var head = data.indexOf(",") + 1,
+        blob = data.substring(head);
 
     blob = atob(blob);
-    blob = blob.replace(search, replace);
-    blob = btoa(blob);
 
-    data = data.substring(0, head + 1) + blob;
+    if (replaceAll) {
+        blob = blob.replaceAll(search, replace);
+    } else {
+        blob = blob.replace(search, replace);
+    }
+
+    blob = btoa(blob);
+    data = data.substring(0, head) + blob;
 
     return data;
 }

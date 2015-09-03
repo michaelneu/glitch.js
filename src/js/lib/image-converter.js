@@ -4,8 +4,8 @@ function convertToJpeg(data, canvas, callback) {
     image.onload = function () {
         var context = canvas.getContext("2d");
 
-        canvas.width  = image.width;
-        canvas.height = image.height;
+        canvas.width  = this.width;
+        canvas.height = this.height;
 
         context.clearRect(0, 0, canvas.width, canvas.height);
         context.fillStyle = "#ffffff";
